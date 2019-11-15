@@ -4,6 +4,11 @@ let grid;
 let rows = 8;
 let cols = 8;
 
+function preload(){
+  noteC = loadSound('assets/c.mp3');
+  
+}
+
 function setup() {
   // if (windowWidth > windowHeight) {
   //   createCanvas(windowHeight, windowHeight);
@@ -13,7 +18,7 @@ function setup() {
   // }
   createCanvas(windowHeight, windowWidth)
   background(125);
-  // soundFormats('mp3');
+  soundFormats('mp3');
   grid = createRandom2dArray(cols, rows);
 }
 
@@ -58,4 +63,22 @@ function createRandom2dArray(cols, rows) {
     }
   }
   return randomGrid;
+}
+
+function mousePressed(){
+  let cellSize = width/cols;
+  let xCoord = floor(mouseX / cellSize);
+  let yCoord = floor(mouseY / cellSize);
+  if (grid[yCoord][xCoord] > 0){
+    grid[yCoord][xCoord] = 0;
+  }
+  else{
+    grid[yCoord][xCoord] = 1;
+  }
+}
+
+function keyPressed(){
+  if (key === ' '){
+    noteC;
+  }
 }
