@@ -16,7 +16,7 @@ function setup() {
   // else {
   //   createCanvas(windowWidth, windowWidth);
   // }
-  createCanvas(windowHeight, windowWidth)
+  createCanvas(windowHeight-200, windowWidth-200)
   background(125);
   soundFormats('mp3');
   grid = createRandom2dArray(cols, rows);
@@ -75,10 +75,13 @@ function mousePressed(){
   else{
     grid[yCoord][xCoord] = 1;
   }
+  print(xCoord, yCoord);
 }
 
 function keyPressed(){
   if (key === ' '){
-    noteC;
+    if (grid[0][0] === 0){
+      noteC.play();
+    }
   }
 }
