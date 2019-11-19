@@ -10,20 +10,22 @@ function preload(){
 }
 
 function setup() {
-  // if (windowWidth > windowHeight) {
-  //   createCanvas(windowHeight, windowHeight);
-  // }
-  // else {
-  //   createCanvas(windowWidth, windowWidth);
-  // }
-  createCanvas(windowHeight-200, windowWidth-200)
-  background(125);
-  soundFormats('mp3');
-  grid = createRandom2dArray(cols, rows);
-}
-
+  if (windowWidth > windowHeight) {
+      createCanvas(windowHeight, windowHeight);
+    }
+    else {
+        createCanvas(windowWidth, windowWidth);
+      }
+      createCanvas(windowWidth, windowHeight)
+      background(125);
+      soundFormats('mp3');
+      grid = createRandom2dArray(cols, rows);
+    }
+    
 function draw(){
   displayGrid(grid, rows, cols);
+  noteReader();
+  gui();
 }
 
 function createEmptyGrid() {
@@ -38,7 +40,7 @@ function createEmptyGrid() {
 }
 
 function displayGrid(grid, rows, cols) {
-  let cellSize = width / cols;
+  let cellSize = height/cols;
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       if (grid[y][x] === 0) {
@@ -66,7 +68,7 @@ function createRandom2dArray(cols, rows) {
 }
 
 function mousePressed(){
-  let cellSize = width/cols;
+  let cellSize = height/cols;
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
   if (grid[yCoord][xCoord] > 0){
@@ -75,7 +77,7 @@ function mousePressed(){
   else{
     grid[yCoord][xCoord] = 1;
   }
-  print(xCoord, yCoord);
+  print(mouseX, mouseY);
 }
 
 function keyPressed(){
@@ -85,3 +87,16 @@ function keyPressed(){
     }
   }
 }
+
+function gui(){
+  fill(200);
+  rect(900,100, 200,100);
+  fill(200,100,0);
+  text("I heard people are talking aboot you",925, 125, 150);
+}
+
+function noteReader(){
+  fill(200,0,0);
+  rect(0,0, cols/2, height);
+}
+
