@@ -3,6 +3,8 @@
 let grid;
 let rows = 8;
 let cols = 8;
+let state = 'neutral';
+let a;
 
 function preload(){
   noteC = loadSound('assets/c.mp3');
@@ -16,13 +18,15 @@ function setup() {
     else {
         createCanvas(windowWidth, windowWidth);
       }
-      createCanvas(windowWidth, windowHeight)
-      background(125);
-      soundFormats('mp3');
-      grid = createRandom2dArray(cols, rows);
-    }
-    
+  createCanvas(windowWidth, windowHeight)
+  background(125);
+  soundFormats('mp3');
+  grid = createRandom2dArray(cols, rows);
+  a = 0;
+}
+
 function draw(){
+
   displayGrid(grid, rows, cols);
   noteReader();
   gui();
@@ -85,6 +89,7 @@ function keyPressed(){
     if (grid[0][0] === 0){
       noteC.play();
     }
+    state = 'playing';
   }
 }
 
@@ -96,7 +101,17 @@ function gui(){
 }
 
 function noteReader(){
-  fill(200,0,0);
-  rect(0,0, cols/2, height);
+  if (state === 'playing'){    
+      line(0,0, 0, height);
+      fill(200,0,0);
+      line(a, 0, a, width);
+      a = a + 2.2;
+      if (a > height) {
+        a = 0;
+    }
+  }
+  else{
+    state = 'neutral';
+  }
 }
 
