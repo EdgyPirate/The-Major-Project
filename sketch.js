@@ -26,7 +26,6 @@ function setup() {
 }
 
 function draw(){
-
   displayGrid(grid, rows, cols);
   noteReader();
   gui();
@@ -53,8 +52,6 @@ function displayGrid(grid, rows, cols) {
       else if (grid[y][x] === 1){
         fill(255);
       }
-      //   fill(175,0,0);
-      // }
       rect(x*cellSize, y*cellSize, cellSize, cellSize);
     }
   }
@@ -71,6 +68,7 @@ function createRandom2dArray(cols, rows) {
   return randomGrid;
 }
 
+// allows you to change the grid colors
 function mousePressed(){
   let cellSize = height/cols;
   let xCoord = floor(mouseX / cellSize);
@@ -86,11 +84,11 @@ function mousePressed(){
 
 function keyPressed(){
   if (key === ' '){
-    if (grid[0][0] === 0){
-      noteC.play();
-    }
     state = 'playing';
   }
+  // else{
+  //   state = 'neutral';
+  // }
 }
 
 function gui(){
@@ -98,17 +96,31 @@ function gui(){
   rect(900,100, 200,100);
   fill(200,100,0);
   text("I heard people are talking aboot you",925, 125, 150);
+  text("1", 45,750, 150);
+  text("+", 145,750, 150);
+  text("2", 245,750, 150);
+  text("+", 340,750, 150);
+  text("3", 440,750, 150);
+  text("+", 540,750, 150);
+  text("4", 640,750, 150);
+  text("+", 735,750, 150);
 }
 
 function noteReader(){
+  let cellSize = height/cols;
+  // let xCoord = floor(mouseX / cellSize);
+  // let yCoord = floor(mouseY / cellSize);
   if (state === 'playing'){    
       line(0,0, 0, height);
       fill(200,0,0);
       line(a, 0, a, width);
-      a = a + 2.2;
+      a = a + 2.8; // speed of the line
       if (a > height) {
         a = 0;
-    }
+      }
+      if (a === grid[1][1]){
+        noteC.play();
+      }
   }
   else{
     state = 'neutral';
