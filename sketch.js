@@ -2,13 +2,12 @@
 
 let grid;
 let rows = 8;
-let cols = 8;
+let cols = 13;
 let state = 'neutral';
 let a;
 
 function preload(){
   noteC = loadSound('assets/c.mp3');
-  
 }
 
 function setup() {
@@ -44,8 +43,8 @@ function createEmptyGrid() {
 
 function displayGrid(grid, rows, cols) {
   let cellSize = height/cols;
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
+  for (let y = 0; y < cols; y++) {
+    for (let x = 0; x < rows; x++) {
       if (grid[y][x] === 0) {
         fill(0);
       }
@@ -94,8 +93,16 @@ function keyPressed(){
 function gui(){
   fill(200);
   rect(900,100, 200,100);
+  rect(900,300, 200,100);
+  rect(900,500, 200,100);
+
+  
   fill(200,100,0);
   text("I heard people are talking aboot you",925, 125, 150);
+  text("They sey your not feeling too good",925, 325, 150);
+  text("Hurd this ona facebook ya",925, 525, 150);
+
+
   text("1", 45,750, 150);
   text("+", 145,750, 150);
   text("2", 245,750, 150);
@@ -107,15 +114,12 @@ function gui(){
 }
 
 function noteReader(){
-  let cellSize = height/cols;
-  // let xCoord = floor(mouseX / cellSize);
-  // let yCoord = floor(mouseY / cellSize);
   if (state === 'playing'){    
       line(0,0, 0, height);
       fill(200,0,0);
       line(a, 0, a, width);
       a = a + 2.8; // speed of the line
-      if (a > height) {
+      if (a > 485) {
         a = 0;
       }
       if (a === grid[1][1]){
