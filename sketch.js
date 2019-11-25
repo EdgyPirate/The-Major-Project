@@ -5,7 +5,6 @@ let rows = 8;
 let cols = 13;
 let state = 'neutral';
 let a;
-
 function preload(){
   noteC = loadSound('assets/c.mp3');
 }
@@ -85,9 +84,9 @@ function keyPressed(){
   if (key === ' '){
     state = 'playing';
   }
-  // else{
-  //   state = 'neutral';
-  // }
+  else{
+    state = 'neutral';
+  }
 }
 
 function gui(){
@@ -103,31 +102,31 @@ function gui(){
   text("Hurd this ona facebook ya",925, 525, 150);
 
 
-  text("1", 45,750, 150);
-  text("+", 145,750, 150);
-  text("2", 245,750, 150);
-  text("+", 340,750, 150);
-  text("3", 440,750, 150);
-  text("+", 540,750, 150);
-  text("4", 640,750, 150);
-  text("+", 735,750, 150);
+  text("1", 25,750, 150);
+  text("+", 85,750, 150);
+  text("2", 150,750, 150);
+  text("+", 210,750, 150);
+  text("3", 270,750, 150);
+  text("+", 330,750, 150);
+  text("4", 390,750, 150);
+  text("+", 450,750, 150);
 }
 
 function noteReader(){
   if (state === 'playing'){    
-      line(0,0, 0, height);
-      fill(200,0,0);
       line(a, 0, a, width);
       a = a + 2.8; // speed of the line
-      if (a > 485) {
+      if (a > 485) { // resets the line
         a = 0;
       }
-      if (a === grid[1][1]){
-        noteC.play();
+      if (a > 60 && a < 62){
+        if (grid[1][1] === 0){
+          noteC.play();
       }
+    }
   }
-  else{
-    state = 'neutral';
+  else if (state === 'neutral'){
+    a = 0;
   }
 }
 
