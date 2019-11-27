@@ -1,10 +1,13 @@
 // Major Project Interactive Music Maker
 
+
+
 let grid;
 let rows = 8;
 let cols = 13;
 let state = 'neutral';
 let a;
+
 function preload(){
   noteC = loadSound('assets/c.mp3');
 }
@@ -113,14 +116,15 @@ function gui(){
 }
 
 function noteReader(){
+  let cellSize = height/cols;
   if (state === 'playing'){    
       line(a, 0, a, width);
-      a = a + 2.8; // speed of the line
+      a = a + 3; // speed of the line
       if (a > 485) { // resets the line
         a = 0;
       }
-      if (a > 60 && a < 62){
-        if (grid[1][1] === 0){
+      if (a === 60){ // if the a is = to the x of a colum it plays
+        if (grid[0][1] === 0){
           noteC.play();
       }
     }
