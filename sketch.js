@@ -10,6 +10,10 @@ let a;
 
 function preload(){
   noteC = loadSound('assets/c.mp3');
+  noteD = loadSound('assets/noteD.mp3')
+  noteE = loadSound('assets/noteE.mp3')
+  noteF = loadSound('assets/noteF.mp3')
+
 }
 
 function setup() {
@@ -116,18 +120,42 @@ function gui(){
 }
 
 function noteReader(){
-  let cellSize = height/cols;
+  let cellSize = floor(height/cols);
   if (state === 'playing'){    
       line(a, 0, a, width);
       a = a + 3; // speed of the line
       if (a > 485) { // resets the line
         a = 0;
       }
-      if (a === 60){ // if the a is = to the x of a colum it plays
-        if (grid[0][1] === 0){
+      if (a === cellSize * 2){ // if the a is = to the x of a colum it plays
+        if (grid[7][1] === 0){
           noteC.play();
+        }
+        if (grid[6][1] === 0){
+          noteD.play();
+        }
+        if (grid[5][1] === 0){
+          noteE.play();
+        }
+        if (grid[4][1] === 0){
+          noteF.play();
+        }
+        
       }
-    }
+      if (a === cellSize * 3){
+        if (grid[7][2] === 0){
+          noteC.play();
+        }
+        if (grid[6][2] === 0){
+          noteD.play();
+        }
+        if (grid[5][2] === 0){
+          noteE.play();
+        }
+        if (grid[4][2] === 0){
+          noteF.play();
+        }
+      }
   }
   else if (state === 'neutral'){
     a = 0;
