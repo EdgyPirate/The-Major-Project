@@ -95,6 +95,7 @@ function keyPressed(){
   }
   else{
     state = 'neutral';
+    a = 0;
   }
 }
 
@@ -353,8 +354,5 @@ function noteReader(){
         }
         
       }
-  else if (state === 'neutral'){
-    a = 0;
   }
-}
 }
