@@ -1,5 +1,5 @@
 // Major Project Interactive Music Maker
-
+// Thanks to https://keithwhor.github.io/audiosynth/ sound synthesiser
 
 
 let grid;
@@ -7,6 +7,7 @@ let rows = 8;
 let cols = 13;
 let state = 'neutral';
 let a;
+var piano = Synth.createInstrument('piano');
 
 function preload(){
   noteC = loadSound('assets/c.mp3');
@@ -128,6 +129,7 @@ class Reader{
     this.grid[0][0 + row];
     this
   }
+  
 }
 
 function noteReader(){
@@ -139,220 +141,67 @@ function noteReader(){
         a = 0;
       }
       if (a === cellSize){ // if the a is = to the x of a colum it plays
-        if (grid[0][0] === 0){
-          noteC.play();
-        }
-        if (grid[1][0] === 0){
-          noteB.play();
-        }
-        if (grid[2][0] === 0){
-          noteA.play();
-        }
-        if (grid[3][0] === 0){
-          noteG.play();
-        }
-        if (grid[4][0] === 0){
-          noteF.play();
-        }
-        if (grid[5][0] === 0){
-          noteE.play();
-        }
-        if (grid[6][0] === 0){
-          noteD.play();
-        }
-        if (grid[7][0] === 0){
-          noteC.play();
-        }
-        
+        gridCheck(0);        
       }
       if (a === cellSize * 2){ // if the a is = to the x of a colum it plays
-        if (grid[0][1] === 0){
-          noteC.play();
-        }
-        if (grid[1][1] === 0){
-          noteB.play();
-        }
-        if (grid[2][1] === 0){
-          noteA.play();
-        }
-        if (grid[3][1] === 0){
-          noteG.play();
-        }
-        if (grid[4][1] === 0){
-          noteF.play();
-        }
-        if (grid[5][1] === 0){
-          noteE.play();
-        }
-        if (grid[6][1] === 0){
-          noteD.play();
-        }
-        if (grid[7][1] === 0){
-          noteC.play();
-        }
-        
+        gridCheck(1);        
       }
-      if (a === cellSize * 3){ // if the a is = to the x of a colum it plays
-        if (grid[0][2] === 0){
-          noteC.play();
-        }
-        if (grid[1][2] === 0){
-          noteB.play();
-        }
-        if (grid[2][2] === 0){
-          noteA.play();
-        }
-        if (grid[3][2] === 0){
-          noteG.play();
-        }
-        if (grid[4][2] === 0){
-          noteF.play();
-        }
-        if (grid[5][2] === 0){
-          noteE.play();
-        }
-        if (grid[6][2] === 0){
-          noteD.play();
-        }
-        if (grid[7][2] === 0){
-          noteC.play();
-        }
-        
+      if (a === cellSize*3){ // if the a is = to the x of a colum it plays
+        gridCheck(2);        
       }
-      if (a === cellSize * 4){ // if the a is = to the x of a colum it plays
-        if (grid[0][3] === 0){
-          noteC.play();
-        }
-        if (grid[1][3] === 0){
-          noteB.play();
-        }
-        if (grid[2][3] === 0){
-          noteA.play();
-        }
-        if (grid[3][3] === 0){
-          noteG.play();
-        }
-        if (grid[4][3] === 0){
-          noteF.play();
-        }
-        if (grid[5][3] === 0){
-          noteE.play();
-        }
-        if (grid[6][3] === 0){
-          noteD.play();
-        }
-        if (grid[7][3] === 0){
-          noteC.play();
-        }
-        
+      if (a === cellSize*4){ // if the a is = to the x of a colum it plays
+        gridCheck(3);        
       }
-      if (a === cellSize * 5){ // if the a is = to the x of a colum it plays
-        if (grid[0][4] === 0){
-          noteC.play();
-        }
-        if (grid[1][4] === 0){
-          noteB.play();
-        }
-        if (grid[2][4] === 0){
-          noteA.play();
-        }
-        if (grid[3][4] === 0){
-          noteG.play();
-        }
-        if (grid[4][4] === 0){
-          noteF.play();
-        }
-        if (grid[5][4] === 0){
-          noteE.play();
-        }
-        if (grid[6][4] === 0){
-          noteD.play();
-        }
-        if (grid[7][4] === 0){
-          noteC.play();
-        }
-        
+      if (a === cellSize*5){ // if the a is = to the x of a colum it plays
+        gridCheck(4);        
       }
-      if (a === cellSize * 6){ // if the a is = to the x of a colum it plays
-        if (grid[0][5] === 0){
-          noteC.play();
-        }
-        if (grid[1][5] === 0){
-          noteB.play();
-        }
-        if (grid[2][5] === 0){
-          noteA.play();
-        }
-        if (grid[3][5] === 0){
-          noteG.play();
-        }
-        if (grid[4][5] === 0){
-          noteF.play();
-        }
-        if (grid[5][5] === 0){
-          noteE.play();
-        }
-        if (grid[6][5] === 0){
-          noteD.play();
-        }
-        if (grid[7][5] === 0){
-          noteC.play();
-        }
-        
+      if (a === cellSize*6){ // if the a is = to the x of a colum it plays
+        gridCheck(5);        
       }
-      if (a === cellSize * 7){ // if the a is = to the x of a colum it plays
-        if (grid[0][6] === 0){
-          noteC.play();
-        }
-        if (grid[1][6] === 0){
-          noteB.play();
-        }
-        if (grid[2][6] === 0){
-          noteA.play();
-        }
-        if (grid[3][6] === 0){
-          noteG.play();
-        }
-        if (grid[4][6] === 0){
-          noteF.play();
-        }
-        if (grid[5][6] === 0){
-          noteE.play();
-        }
-        if (grid[6][6] === 0){
-          noteD.play();
-        }
-        if (grid[7][6] === 0){
-          noteC.play();
-        }
-        
+      if (a === cellSize*7){ // if the a is = to the x of a colum it plays
+        gridCheck(6);        
       }
-      if (a === cellSize * 8){ // if the a is = to the x of a colum it plays
-        if (grid[0][7] === 0){
-          noteC.play();
-        }
-        if (grid[1][7] === 0){
-          noteB.play();
-        }
-        if (grid[2][7] === 0){
-          noteA.play();
-        }
-        if (grid[3][7] === 0){
-          noteG.play();
-        }
-        if (grid[4][7] === 0){
-          noteF.play();
-        }
-        if (grid[5][7] === 0){
-          noteE.play();
-        }
-        if (grid[6][7] === 0){
-          noteD.play();
-        }
-        if (grid[7][7] === 0){
-          noteC.play();
-        }
-        
-      }
+  }
+}
+
+function gridCheck(col){
+  if (grid[0][col] === 0){
+    piano.play('C', 4, 1);
+  }
+  if (grid[1][col] === 0){
+    piano.play('B', 4, 1);
+  }
+  if (grid[2][col] === 0){
+    piano.play('A#', 4, 1);
+  }
+  if (grid[3][col] === 0){
+    piano.play('A', 4, 1);
+  }
+  if (grid[4][col] === 0){
+    piano.play('G#', 3, 1);
+  }
+  if (grid[5][col] === 0){
+    piano.play('G', 3, 1);
+  }
+  if (grid[6][col] === 0){
+    piano.play('F#', 3, 1);
+  }
+  if (grid[7][col] === 0){
+    piano.play('F', 3, 1);
+  }
+  if (grid[8][col] === 0){
+    piano.play('E', 3, 1);
+  }
+  if (grid[9][col] === 0){
+    piano.play('D#', 3, 1);
+  }
+  if (grid[10][col] === 0){
+    piano.play('D', 3, 1);
+  }
+  if (grid[11][col] === 0){
+    piano.play('C#', 3, 1);
+  }
+  if (grid[12][col] === 0){
+    piano.play('C', 3, 1);
   }
 }
