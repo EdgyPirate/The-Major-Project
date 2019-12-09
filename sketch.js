@@ -7,16 +7,12 @@ let rows = 8;
 let cols = 13;
 let state = 'neutral';
 let a;
+let c = 0;
 var piano = Synth.createInstrument('piano');
+let lineSpeed = 5;
 
 function preload(){
-  noteC = loadSound('assets/c.mp3');
-  noteD = loadSound('assets/noteD.mp3')
-  noteE = loadSound('assets/noteE.mp3')
-  noteF = loadSound('assets/noteF.mp3')
-  noteG = loadSound('assets/noteG.mp3')
-  noteA = loadSound('assets/noteA.mp3')
-  noteB = loadSound('assets/noteB.mp3')
+
 }
 
 function setup() {
@@ -92,11 +88,15 @@ function mousePressed(){
 
 function keyPressed(){
   if (key === ' '){
-    state = 'playing';
-  }
-  else{
-    state = 'neutral';
-    a = 0;
+    c++;
+    if (c < 2){
+      state = 'playing';
+    }
+    else{
+      c = 0;
+      a = 0;
+      state = 'neutral';
+    }
   }
 }
 
@@ -123,20 +123,12 @@ function gui(){
   text("+", 450,750, 150);
 }
 
-class Reader{
-  constructor(){
-    this.cellSize === 0;
-    this.grid[0][0 + row];
-    this
-  }
-  
-}
 
 function noteReader(){
   let cellSize = floor(height/cols);
   if (state === 'playing'){    
       line(a, 0, a, width);
-      a = a + 3; // speed of the line
+      a = a + lineSpeed; // speed of the line
       if (a > 485) { // resets the line
         a = 0;
       }
@@ -160,6 +152,9 @@ function noteReader(){
       }
       if (a === cellSize*7){ // if the a is = to the x of a colum it plays
         gridCheck(6);        
+      }
+      if (a === cellSize*8){ // if the a is = to the x of a colum it plays
+        gridCheck(7);        
       }
   }
 }
