@@ -10,6 +10,9 @@ let a;
 let c = 0;
 var piano = Synth.createInstrument('piano');
 let lineSpeed = 5;
+let gridLength = 800;
+// let gridWidth = 800;
+let cellSize = gridLength/cols;
 
 function preload(){
 
@@ -47,7 +50,6 @@ function createEmptyGrid() {
 }
 
 function displayGrid(grid, rows, cols) {
-  let cellSize = height/cols;
   for (let y = 0; y < cols; y++) {
     for (let x = 0; x < rows; x++) {
       if (grid[y][x] === 0) {
@@ -74,7 +76,6 @@ function createRandom2dArray(cols, rows) {
 
 // allows you to change the grid colors
 function mousePressed(){
-  let cellSize = height/cols;
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
   if (grid[yCoord][xCoord] > 0){
@@ -125,11 +126,11 @@ function gui(){
 
 
 function noteReader(){
-  let cellSize = floor(height/cols);
+
   if (state === 'playing'){    
-      line(a, 0, a, width);
+      line(a, 0, a, gridLength);
       a = a + lineSpeed; // speed of the line
-      if (a > 485) { // resets the line
+      if (a > cellSize*8) { // resets the line
         a = 0;
       }
       if (a === cellSize){ // if the a is = to the x of a colum it plays
