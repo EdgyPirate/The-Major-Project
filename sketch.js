@@ -9,13 +9,12 @@ let state = 'neutral';
 let a;
 let c = 0;
 var piano = Synth.createInstrument('piano');
-let lineSpeed = 5;
+let lineSpeed = 4;
 let gridLength = 800;
 // let gridWidth = 800;
 let cellSize = gridLength/cols;
 
 function preload(){
-
 }
 
 function setup() {
@@ -87,7 +86,7 @@ function mousePressed(){
   print(mouseX, mouseY);
 }
 
-function keyPressed(){
+function keyPressed(){ // simple toggle for the space bar to stop and play
   if (key === ' '){
     c++;
     if (c < 2){
@@ -126,7 +125,7 @@ function gui(){
 
 
 function noteReader(){
-
+  let cellSize = floor(gridLength/cols);
   if (state === 'playing'){    
       line(a, 0, a, gridLength);
       a = a + lineSpeed; // speed of the line
@@ -136,7 +135,7 @@ function noteReader(){
       if (a === cellSize){ // if the a is = to the x of a colum it plays
         gridCheck(0);        
       }
-      if (a === cellSize * 2){ // if the a is = to the x of a colum it plays
+      if (a === cellSize*2){ // if the a is = to the x of a colum it plays
         gridCheck(1);        
       }
       if (a === cellSize*3){ // if the a is = to the x of a colum it plays
