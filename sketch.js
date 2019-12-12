@@ -9,8 +9,8 @@ let state = 'neutral';
 let a;
 let c = 0;
 var piano = Synth.createInstrument('piano');
-let lineSpeed = 4;
-let gridLength = 800;
+let lineSpeed = 2.5;
+let gridLength = 650;
 // let gridWidth = 800;
 let cellSize = gridLength/cols;
 
@@ -125,6 +125,7 @@ function gui(){
 
 
 function noteReader(){
+  // let gridLength = height;
   let cellSize = floor(gridLength/cols);
   if (state === 'playing'){    
       line(a, 0, a, gridLength);
@@ -132,28 +133,28 @@ function noteReader(){
       if (a > cellSize*8) { // resets the line
         a = 0;
       }
-      if (a === cellSize){ // if the a is = to the x of a colum it plays
+      if (a === 0){ // if the a is = to the x of a colum it plays
         gridCheck(0);        
       }
-      if (a === cellSize*2){ // if the a is = to the x of a colum it plays
+      if (a === cellSize*3){ // if the a is = to the x of a colum it plays
         gridCheck(1);        
       }
-      if (a === cellSize*3){ // if the a is = to the x of a colum it plays
+      if (a === cellSize*2){ // if the a is = to the x of a colum it plays
         gridCheck(2);        
       }
-      if (a === cellSize*4){ // if the a is = to the x of a colum it plays
+      if (a === cellSize*3){ // if the a is = to the x of a colum it plays
         gridCheck(3);        
       }
-      if (a === cellSize*5){ // if the a is = to the x of a colum it plays
+      if (a === cellSize*4){ // if the a is = to the x of a colum it plays
         gridCheck(4);        
       }
-      if (a === cellSize*6){ // if the a is = to the x of a colum it plays
+      if (a === cellSize*5){ // if the a is = to the x of a colum it plays
         gridCheck(5);        
       }
-      if (a === cellSize*7){ // if the a is = to the x of a colum it plays
+      if (a === cellSize*6){ // if the a is = to the x of a colum it plays
         gridCheck(6);        
       }
-      if (a === cellSize*8){ // if the a is = to the x of a colum it plays
+      if (a === cellSize*7){ // if the a is = to the x of a colum it plays
         gridCheck(7);        
       }
   }
