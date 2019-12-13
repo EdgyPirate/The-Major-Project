@@ -14,6 +14,7 @@ let gridLength = 650;
 // let gridWidth = 800;
 let cellSize = gridLength/cols;
 
+
 function preload(){
 }
 
@@ -27,12 +28,15 @@ function setup() {
   createCanvas(windowWidth, windowHeight)
   background(125);
   soundFormats('mp3');
+  
   grid = createRandom2dArray(cols, rows);
+  grid2 = createRandom2dArray(cols, rows);
   a = 0;
+  currentGrid = grid;  
 }
 
 function draw(){
-  displayGrid(grid, rows, cols);
+  displayGrid(currentGrid, rows, cols);
   noteReader();
   gui();
 }
@@ -77,17 +81,17 @@ function createRandom2dArray(cols, rows) {
 function mousePressed(){
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
-  if (grid[yCoord][xCoord] > 0){
-    grid[yCoord][xCoord] = 0;
+  if (currentGrid[yCoord][xCoord] > 0){
+    currentGrid[yCoord][xCoord] = 0;
   }
   else{
-    grid[yCoord][xCoord] = 1;
+    currentGrid[yCoord][xCoord] = 1;
   }
   print(mouseX, mouseY);
 }
 
-function keyPressed(){ // simple toggle for the space bar to stop and play
-  if (key === ' '){
+function keyPressed(){ 
+  if (key === ' '){// simple toggle for the space bar to stop and play
     c++;
     if (c < 2){
       state = 'playing';
@@ -97,6 +101,12 @@ function keyPressed(){ // simple toggle for the space bar to stop and play
       a = 0;
       state = 'neutral';
     }
+  }
+  if (key === '1'){
+    currentGrid = grid;
+  }
+  if (key === '2'){
+    currentGrid = grid2;
   }
 }
 
@@ -121,6 +131,16 @@ function gui(){
   text("+", 330,750, 150);
   text("4", 390,750, 150);
   text("+", 450,750, 150);
+
+  if (currentGrid === grid){
+    fill(200,175,225);
+    trackText = text("Track 1", cellSize*8+50,50,150);
+  }
+  if (currentGrid === grid2){
+    fill(200,175,225);
+    text("Track 2", cellSize*8+50,50,150);
+  }
+
 }
 
 
