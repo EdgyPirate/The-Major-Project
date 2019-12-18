@@ -5,7 +5,7 @@ Attempting to build a interactive music maker on a grid where the grid contains 
 
 
 ## Need to have list
-- Singular Track
+- Singular Track//
 - Grid of clickable buttons //
 - Mouse interaction//
 - Working buttons for playabillity of sounds//
