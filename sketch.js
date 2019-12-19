@@ -1,15 +1,16 @@
 // Major Project Interactive Music Maker
 // Thanks to https://keithwhor.github.io/audiosynth/ sound synthesiserds     
 
-
 let grid;
 let rows = 8;
 let cols = 13;
 let state = 'neutral';
 let a;
+let b;
 let c = 0;
 var piano = Synth.createInstrument('piano');
 let lineSpeed = 2.5;
+let trackLineSpeed = 0.5;
 let gridLength = 650;
 let gridWidth = 800;
 let cellSize = gridLength/cols;
@@ -31,7 +32,12 @@ function setup() {
   
   grid1 = createRandom2dArray(cols, rows);
   grid2 = createRandom2dArray(cols, rows);
+  grid3 = createRandom2dArray(cols, rows);
+  grid4 = createRandom2dArray(cols, rows);
+  grid5 = createRandom2dArray(cols, rows);
+
   a = 0;
+  b = 0;
   trackGrid = createRandom2dArray(cols+1, rows);
   currentGrid = grid1;  
 }
@@ -40,6 +46,7 @@ function draw(){
   displayGrid(currentGrid, rows, cols);
   displayTrackGrid(trackGrid, rows, cols+1);
   noteReader();
+  trackReader();
   gui();
 }
 
@@ -131,6 +138,15 @@ function keyPressed(){
   if (key === '2'){
     currentGrid = grid2;
   }
+  if (key === '3'){
+    currentGrid = grid3;
+  }
+  if (key === '4'){
+    currentGrid = grid4;
+  }
+  if (key === '5'){
+    currentGrid = grid5;
+  }
 }
 
 function gui(){
@@ -168,7 +184,7 @@ function noteReader(){
       line(a, 0, a, gridLength);
       a = a + lineSpeed; // speed of the line
       if (a > cellSize*8) { // resets the line
-        currentGrid = grid2;
+        // currentGrid = grid2;
         a = 0;
       }
       if (a === cellSize){ // if the a is = to the x of a colum it plays
@@ -198,18 +214,29 @@ function noteReader(){
   }
 }
 
+function trackReader(){
+let cellSize = floor(gridLength/cols);
+if (state === 'playing'){    
+  line(b, gridLength+cellSize, b, gridLength+cellSize);
+  b = b + trackLineSpeed; // speed of the line
+  if (b > cellSize*8) { // resets the line
+    b = 0;
+   }
+  }
+}
+
 function gridCheck(col){
   if (currentGrid[0][col] === 0){
     piano.play('C', 4, 1);
   }
   if (currentGrid[1][col] === 0){
-    piano.play('B', 4, 1);
+    piano.play('B', 3, 1);
   }
   if (currentGrid[2][col] === 0){
-    piano.play('A#', 4, 1);
+    piano.play('A#', 3, 1);
   }
   if (currentGrid[3][col] === 0){
-    piano.play('A', 4, 1);
+    piano.play('A', 3, 1);
   }
   if (currentGrid[4][col] === 0){
     piano.play('G#', 3, 1);
