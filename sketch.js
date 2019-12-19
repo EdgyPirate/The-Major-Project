@@ -1,5 +1,5 @@
 // Major Project Interactive Music Maker
-// Thanks to https://keithwhor.github.io/audiosynth/ sound synthesiser
+// Thanks to https://keithwhor.github.io/audiosynth/ sound synthesiserds     
 
 
 let grid;
@@ -142,28 +142,21 @@ function gui(){
 
   
   fill(200,100,0);
-  text("I heard people are talking aboot you",925, 125, 150);
-  text("They sey your not feeling too good",925, 325, 150);
-  text("Hurd this ona facebook ya",925, 525, 150);
+  text("I heard ",925, 125, 150);
+  text("They say",925, 325, 150);
+  text("Hurd this",925, 525, 150);
 
 
   text("1", 25,750, 150);
-  text("+", 85,750, 150);
-  text("2", 150,750, 150);
-  text("+", 210,750, 150);
-  text("3", 270,750, 150);
-  text("+", 330,750, 150);
-  text("4", 390,750, 150);
-  text("+", 450,750, 150);
 
-  if (currentGrid === grid1){
-    fill(200,175,225);
-    trackText = text("Track 1", cellSize*8+50,50,150);
-  }
-  if (currentGrid === grid2){
-    fill(200,175,225);
-    text("Track 2", cellSize*8+50,50,150);
-  }
+  // if (currentGrid === grid1){
+  //   fill(200,175,225);
+  //   trackText = text("Track 1", cellSize*8+50,50,150);
+  // }
+  // if (currentGrid === grid2){
+  //   fill(200,175,225);
+  //   text("Track 2", cellSize*8+50,50,150);
+  // }
 
 }
 
