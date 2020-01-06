@@ -104,12 +104,15 @@ function createRandom2dArray(cols, rows) {
 function mousePressed(){
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
+  // track grid to compare clicks to tracks
   if (trackGrid[yCoord][xCoord] > 0){
     trackGrid[yCoord][xCoord] = 0;
   }
   else{
     trackGrid[yCoord][xCoord] = 1;
   }
+
+  // current grid to turn on notes when played
   if (currentGrid[yCoord][xCoord] > 0){
     currentGrid[yCoord][xCoord] = 0;
   }
