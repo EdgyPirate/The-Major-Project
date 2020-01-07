@@ -5,12 +5,15 @@ let grid;
 let rows = 8;
 let cols = 13;
 let state = 'neutral';
+// let autoPlay = true;
 let a;
 let b;
 let c = 0;
+let d;
+// let trackNumber = 1;
 var piano = Synth.createInstrument('piano');
 let lineSpeed = 2.5;
-let trackLineSpeed = 0.5;
+// let trackLineSpeed = 0.5;
 let gridLength = 650;
 let gridWidth = 800;
 let cellSize = gridLength/cols;
@@ -38,15 +41,15 @@ function setup() {
 
   a = 0;
   b = 0;
-  trackGrid = createRandom2dArray(cols+1, rows);
+  // trackGrid = createRandom2dArray(cols+1, rows);
   currentGrid = grid1;  
 }
 
 function draw(){
   displayGrid(currentGrid, rows, cols);
-  displayTrackGrid(trackGrid, rows, cols+1);
+  // displayTrackGrid(trackGrid, rows, cols+1);
   noteReader();
-  trackReader();
+  // trackReader();
   gui();
 }
 
@@ -84,7 +87,7 @@ function displayTrackGrid(trackGrid, rows, cols) {
       else {
         fill(125);
       }
-      rect(x*cellSize, y*cellSize, cellSize, cellSize);
+      rect(x*cellSize, y*cellSize, cellSize, cellSize)
     }
   }
 }
@@ -104,14 +107,7 @@ function createRandom2dArray(cols, rows) {
 function mousePressed(){
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
-  // track grid to compare clicks to tracks
-  if (trackGrid[yCoord][xCoord] > 0){
-    trackGrid[yCoord][xCoord] = 0;
-  }
-  else{
-    trackGrid[yCoord][xCoord] = 1;
-  }
-
+ 
   // current grid to turn on notes when played
   if (currentGrid[yCoord][xCoord] > 0){
     currentGrid[yCoord][xCoord] = 0;
@@ -120,8 +116,8 @@ function mousePressed(){
     currentGrid[yCoord][xCoord] = 1;
   }
   print(mouseX, mouseY);
-
 }
+
 
 function keyPressed(){ 
   if (key === ' '){// simple toggle for the space bar to stop and play
@@ -137,9 +133,11 @@ function keyPressed(){
   }
   if (key === '1'){
     currentGrid = grid1;
+    trackNumber = 1;
   }
   if (key === '2'){
     currentGrid = grid2;
+    trackNumber = 2;
   }
   if (key === '3'){
     currentGrid = grid3;
@@ -163,7 +161,7 @@ function gui(){
   fill(200,100,0);
   text("I heard ",925, 125, 150);
   text("They say",925, 325, 150);
-  text("Hurd this",925, 525, 150);
+  text(currentGrid,925, 525, 150);
 
 
   text("1", 25,750, 150);
@@ -187,8 +185,9 @@ function noteReader(){
       line(a, 0, a, gridLength);
       a = a + lineSpeed; // speed of the line
       if (a > cellSize*8) { // resets the line
-        // currentGrid = grid2;
+        // currentGrid;
         a = 0;
+
       }
       if (a === cellSize){ // if the a is = to the x of a colum it plays
         gridCheck(0);        
@@ -217,16 +216,16 @@ function noteReader(){
   }
 }
 
-function trackReader(){
-let cellSize = floor(gridLength/cols);
-if (state === 'playing'){    
-  line(b, gridLength+cellSize, b, gridLength+cellSize);
-  b = b + trackLineSpeed; // speed of the line
-  if (b > cellSize*8) { // resets the line
-    b = 0;
-   }
-  }
-}
+// function trackReader(){
+// let cellSize = floor(gridLength/cols);
+// if (state === 'playing'){    
+//   line(b, gridLength+cellSize, b, gridLength+cellSize);
+//   b = b + trackLineSpeed; // speed of the line
+//   if (b > cellSize*8) { // resets the line
+//     b = 0;
+//    }
+//   }
+// }
 
 function gridCheck(col){
   if (currentGrid[0][col] === 0){
