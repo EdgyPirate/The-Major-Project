@@ -1,19 +1,16 @@
 // Major Project Interactive Music Maker
-// Thanks to https://keithwhor.github.io/audiosynth/ sound synthesiserds     
+// Thanks to https://keithwhor.github.io/audiosynth/ sound synthesisers     
 
 let grid;
 let rows = 8;
 let cols = 13;
 let state = 'neutral';
-// let autoPlay = true;
 let a;
 let b;
 let c = 0;
-let d;
-// let trackNumber = 1;
+let trackNumber = 1;
 var piano = Synth.createInstrument('piano');
 let lineSpeed = 2.5;
-// let trackLineSpeed = 0.5;
 let gridLength = 650;
 let gridWidth = 800;
 let cellSize = gridLength/cols;
@@ -23,15 +20,14 @@ function preload(){
 }
 
 function setup() {
-  if (windowWidth > windowHeight) {
-      createCanvas(windowHeight, windowHeight);
-    }
-    else {
-        createCanvas(windowWidth, windowWidth);
-      }
+  // if (windowWidth > windowHeight) {
+  //     createCanvas(windowHeight, windowHeight);
+  //   }
+  //   else {s
+  //       createCanvas(windowWidth, windowWidth);
+  //     }
   createCanvas(windowWidth, windowHeight)
   background(125);
-  soundFormats('mp3');
   
   grid1 = createRandom2dArray(cols, rows);
   grid2 = createRandom2dArray(cols, rows);
@@ -41,15 +37,12 @@ function setup() {
 
   a = 0;
   b = 0;
-  // trackGrid = createRandom2dArray(cols+1, rows);
   currentGrid = grid1;  
 }
 
 function draw(){
   displayGrid(currentGrid, rows, cols);
-  // displayTrackGrid(trackGrid, rows, cols+1);
   noteReader();
-  // trackReader();
   gui();
 }
 
@@ -104,7 +97,7 @@ function createRandom2dArray(cols, rows) {
 }
 
 // allows you to change the grid colors
-function mousePressed(){
+function mouseClicked(){
   let xCoord = floor(mouseX / cellSize);
   let yCoord = floor(mouseY / cellSize);
  
@@ -116,8 +109,18 @@ function mousePressed(){
     currentGrid[yCoord][xCoord] = 1;
   }
   print(mouseX, mouseY);
-}
 
+  if (mouseX > cellSize*9 & mouseX < cellSize*11 &
+    mouseY > 0 & mouseY < cellSize){
+      if (trackNumber > 1){
+        trackNumber - 1;
+      }
+  }
+  if (mouseX > cellSize*11 & mouseX < cellSize*13 &
+    mouseY > 0 & mouseY < cellSize){
+      trackNumber + 1;
+  }
+}
 
 function keyPressed(){ 
   if (key === ' '){// simple toggle for the space bar to stop and play
@@ -141,39 +144,34 @@ function keyPressed(){
   }
   if (key === '3'){
     currentGrid = grid3;
+    trackNumber = 3;
   }
   if (key === '4'){
+    trackNumber = 4;
     currentGrid = grid4;
   }
   if (key === '5'){
     currentGrid = grid5;
+    trackNumber = 5;
   }
 }
 
 function gui(){
   // make this look better
   fill(200);
-  rect(900,100, 200,100);
-  rect(900,300, 200,100);
-  rect(900,500, 200,100);
+  rect(cellSize*13,0, cellSize*3,cellSize);
+  rect(cellSize*8,0, cellSize,cellSize);
 
-  
+  rect(cellSize*9,0,cellSize*2,cellSize);
+  rect(cellSize*11,0,cellSize*2,cellSize);
+
   fill(200,100,0);
-  text("I heard ",925, 125, 150);
-  text("They say",925, 325, 150);
-  text(currentGrid,925, 525, 150);
+  textAlign(CENTER, CENTER)
+  text("Piano",cellSize*13,0,cellSize*3, cellSize);
+  text(trackNumber,cellSize*8+cellSize/2, cellSize/2);
+  text("Track Select -",cellSize*10, cellSize/2);
+  text("Track Select +",cellSize*12, cellSize/2);
 
-
-  text("1", 25,750, 150);
-
-  // if (currentGrid === grid1){
-  //   fill(200,175,225);
-  //   trackText = text("Track 1", cellSize*8+50,50,150);
-  // }
-  // if (currentGrid === grid2){
-  //   fill(200,175,225);
-  //   text("Track 2", cellSize*8+50,50,150);
-  // }
 
 }
 
@@ -187,7 +185,6 @@ function noteReader(){
       if (a > cellSize*8) { // resets the line
         // currentGrid;
         a = 0;
-
       }
       if (a === cellSize){ // if the a is = to the x of a colum it plays
         gridCheck(0);        
@@ -215,17 +212,6 @@ function noteReader(){
       }
   }
 }
-
-// function trackReader(){
-// let cellSize = floor(gridLength/cols);
-// if (state === 'playing'){    
-//   line(b, gridLength+cellSize, b, gridLength+cellSize);
-//   b = b + trackLineSpeed; // speed of the line
-//   if (b > cellSize*8) { // resets the line
-//     b = 0;
-//    }
-//   }
-// }
 
 function gridCheck(col){
   if (currentGrid[0][col] === 0){

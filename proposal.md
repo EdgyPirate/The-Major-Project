@@ -13,9 +13,9 @@ Attempting to build a interactive music maker on a grid where the grid contains 
 - Beats Per Minutes ex(160, 125)
 
 ## Nice to have list
-- Keyboard shortcuts
+- Keyboard shortcuts//
 - Saving and loading music
 - Colors, graphics
 - Serveral Instruments, sounds
 - tutorial?
-- Multiple Tracks
+- Multiple Tracks//
