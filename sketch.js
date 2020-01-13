@@ -8,6 +8,7 @@ let state = 'neutral';
 let a = 0;
 let b = 0;
 let c = 0;
+let d = 0;
 let trackNumber = 1;
 var acoustic = Synth.createInstrument('acoustic');
 instrument = acoustic;
@@ -15,12 +16,11 @@ let lineSpeed = 2.5;
 let gridLength = 650;
 let gridWidth = 800;
 let cellSize = gridLength/cols;
-
+tutorial = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight)
   background(75,150,150);
-  
   grid1 = createRandom2dArray(cols, rows);
   grid2 = createRandom2dArray(cols, rows);
   grid3 = createRandom2dArray(cols, rows);
@@ -103,14 +103,30 @@ function mouseClicked(){
       c++;
         if (c < 2){
           // execute
-          print("its doing somethingt")
-          text("You u se ur mouse to click on the grid to make sounds",cellSize*10,cellSize*3,cellSize*3,cellSize);
+          print("its doing something true;")
         }
         else{
           c = 0;
-          print("no good sod");
+          print("no good sod its false;");
       }
     }
+  if (mouseX > cellSize*18 & mouseX < cellSize*20 &
+    mouseY > 0 & mouseY < cellSize){
+      d++;
+      if (d < 2){
+        print("autoplay on!")
+        state = "autoplay";
+      }
+      else{
+        d = 0;
+        print("autoplay off!")
+        state = "neutral";
+      }
+    } 
+  if(mouseX > cellSize*16 & mouseX < cellSize * 18 &
+    mouseY > 0 & mouseY < cellSize){
+      text("#'s 1-5 for tracks. Space to stop and play. Mouse to interact.",cellSize*16,cellSize*2,cellSize*2,cellSize);;
+  }
 }
 
 function keyPressed(){ 
@@ -158,6 +174,8 @@ function gui(){
 
   rect(cellSize*16,0,cellSize*2,cellSize);
 
+  rect(cellSize*18,0,cellSize*2,cellSize);
+
   fill(25);
   textAlign(CENTER, CENTER)
   text("acoustic",cellSize*13,0,cellSize*3, cellSize);
@@ -165,6 +183,8 @@ function gui(){
   text("Track Select -",cellSize*10, cellSize/2);
   text("Track Select +",cellSize*12, cellSize/2);
   text("Tutorial", cellSize*17,cellSize/2);
+  text("Autoplay",cellSize*19,cellSize/2);
+
 }
 
 
@@ -174,7 +194,6 @@ function noteReader(){
       line(a, 0, a, gridLength);
       a = a + lineSpeed; // speed of the line
       if (a > cellSize*8) { // resets the line
-        // currentGrid;
         a = 0;
       }
       if (a === cellSize){ // if the a is = to the x of a colum it plays 
