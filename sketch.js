@@ -191,7 +191,7 @@ function keyPressed(){
 }
 
 function clickableTrackSwitch(){
-  // when a variable is = to a grid it is changed to it
+  // when a variable is = to the same number as the grid it is changed to it
   if (autoPlay === false){
     if (lineLoops === 0){
       currentGrid = grid1;
@@ -246,6 +246,10 @@ function gui(){
   text("Tutorial", cellSize*17,cellSize/2);
   text("Autoplay",cellSize*19,cellSize/2);
 
+  if (autoPlay === true){
+    fill(75);
+    new Buttonz(cellSize*18,0,cellSize*2,cellSize);
+  }
 }
 
 function noteReader(){
